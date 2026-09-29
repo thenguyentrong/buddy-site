@@ -50,7 +50,7 @@ export function WaitlistForm({ id }: { id: string }) {
         <button
           type="submit"
           disabled={pending}
-          className="shrink-0 rounded-full bg-ink px-5 py-3 text-[15px] font-semibold text-bg transition hover:bg-white active:scale-[0.98] disabled:opacity-60"
+          className="shine shrink-0 rounded-full bg-ink px-5 py-3 text-[15px] font-semibold text-bg transition hover:bg-white active:scale-[0.98] disabled:opacity-60"
         >
           {pending ? (
             "Joining…"

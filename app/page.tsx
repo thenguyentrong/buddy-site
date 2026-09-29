@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import frames from "../public/buddy-frames.json";
-import { BuddyFace } from "./_components/buddy-face";
 import { Icon, type IconName } from "./_components/icon";
-import { Watch } from "./_components/watch";
+import { HeroWatch } from "./_components/hero-watch";
 import { WaitlistForm } from "./_components/waitlist-form";
 
 const GITHUB = "https://github.com/thenguyentrong/watch-ai";
@@ -78,7 +77,7 @@ const faq = [
 
 function Phone({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="mx-auto w-full max-w-[300px] overflow-hidden rounded-[40px] border border-line bg-bg">
+    <div className="reveal-3d mx-auto w-full max-w-[300px] overflow-hidden rounded-[40px] border border-line bg-bg">
       <Image src={src} alt={alt} width={720} height={1561} sizes="300px" className="block h-auto w-full" />
     </div>
   );
@@ -118,11 +117,9 @@ export default function Home() {
           </div>
 
           <figure className="relative flex w-full items-center justify-center gap-6">
-            <div className="absolute top-1/2 left-1/2 aspect-square w-full max-w-[640px] -translate-x-1/2 md:w-[120%] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(111,227,180,0.15)_0%,rgba(111,227,180,0.04)_45%,transparent_70%)]" />
-            <Watch className="relative z-10 shrink-0">
-              <BuddyFace first={frames.rest[0].b} className="w-[62%]" />
-            </Watch>
-            <div className="relative hidden w-[190px] shrink-0 overflow-hidden rounded-[32px] border-[6px] border-[#08080a] shadow-[0_0_0_1.5px_#2c2c32] lg:block">
+            <div className="aurora" aria-hidden="true" />
+            <HeroWatch first={frames.rest[0].b} />
+            <div className="phone-float relative hidden w-[190px] shrink-0 overflow-hidden rounded-[32px] border-[6px] border-[#08080a] shadow-[0_0_0_1.5px_#2c2c32] lg:block">
               <Image
                 src="/img/3-text-waits-for-yes.webp"
                 alt="On the phone: a text to Alex waits for Send or Cancel"
@@ -140,17 +137,17 @@ export default function Home() {
         <section className="border-t border-line">
           <div className="mx-auto grid w-full max-w-[1152px] gap-14 px-4 py-24 sm:px-6 md:grid-cols-2 md:items-center md:py-32">
             <div>
-              <h2 className="text-[32px] leading-tight font-semibold tracking-[-0.03em] text-balance md:text-[40px]">
+              <h2 className="reveal text-[32px] leading-tight font-semibold tracking-[-0.03em] text-balance md:text-[40px]">
                 It doesn&apos;t just answer. It acts on your phone.
               </h2>
-              <p className="mt-5 max-w-[32rem] text-lg leading-relaxed text-muted">
+              <p className="reveal mt-5 max-w-[32rem] text-lg leading-relaxed text-muted">
                 Buddy listens and talks through your watch, or your earbuds when they&apos;re in. The work happens on your
                 phone, which stays in your pocket. Each action shows up as a small pop-up, and anything that goes out
                 waits for your yes.
               </p>
-              <ul className="mt-8 flex flex-wrap gap-2">
+              <ul className="reveal mt-8 flex flex-wrap gap-2">
                 {abilities.map((a) => (
-                  <li key={a} className="rounded-full border border-line bg-surface px-4 py-2 text-sm font-medium text-ink">
+                  <li key={a} className="chip rounded-full border border-line bg-surface px-4 py-2 text-sm font-medium text-ink">
                     {a}
                   </li>
                 ))}
@@ -163,7 +160,7 @@ export default function Home() {
                 width={1028}
                 height={202}
                 sizes="(min-width: 768px) 540px, 100vw"
-                className="h-auto w-full"
+                className="pop h-auto w-full"
               />
               <Image
                 src="/img/card-map.webp"
@@ -171,7 +168,7 @@ export default function Home() {
                 width={1028}
                 height={616}
                 sizes="(min-width: 768px) 540px, 100vw"
-                className="h-auto w-full"
+                className="pop h-auto w-full"
               />
               <Image
                 src="/img/card-text.webp"
@@ -179,7 +176,7 @@ export default function Home() {
                 width={1028}
                 height={380}
                 sizes="(min-width: 768px) 540px, 100vw"
-                className="h-auto w-full"
+                className="pop h-auto w-full"
               />
             </div>
           </div>
@@ -189,15 +186,15 @@ export default function Home() {
           <div className="mx-auto grid w-full max-w-[1152px] gap-14 px-4 py-24 sm:px-6 md:grid-cols-[1.1fr_0.9fr] md:items-center md:py-32">
             <div>
               <Eyebrow>Privacy-first, with on-device AI</Eyebrow>
-              <h2 className="mt-4 text-[32px] leading-tight font-semibold tracking-[-0.03em] md:text-[40px]">
+              <h2 className="reveal mt-4 text-[32px] leading-tight font-semibold tracking-[-0.03em] md:text-[40px]">
                 Private things stay on your phone.
               </h2>
-              <p className="mt-5 max-w-[32rem] text-lg leading-relaxed text-muted">
+              <p className="reveal mt-5 max-w-[32rem] text-lg leading-relaxed text-muted">
                 ChatGPT hears what you ask and decides what to do. Your messages, notes and calendar are read by an AI
                 model that runs on the phone, and your phone says the answer in its own voice. ChatGPT only learns that
                 the phone told you, and its microphone hears silence meanwhile.
               </p>
-              <dl className="mt-8 max-w-[32rem] divide-y divide-line border-y border-line">
+              <dl className="reveal mt-8 max-w-[32rem] divide-y divide-line border-y border-line">
                 {[
                   ["ChatGPT hears", "“Any new messages?”"],
                   ["Your phone reads", "Your messages, with Gemma running on the phone"],
@@ -224,14 +221,14 @@ export default function Home() {
           <div className="mx-auto grid w-full max-w-[1152px] gap-14 px-4 py-24 sm:px-6 md:grid-cols-[0.9fr_1.1fr] md:items-center md:py-32">
             <div className="md:order-2">
               <Eyebrow>Agent safety by design</Eyebrow>
-              <h2 className="mt-4 text-[32px] leading-tight font-semibold tracking-[-0.03em] md:text-[40px]">
+              <h2 className="reveal mt-4 text-[32px] leading-tight font-semibold tracking-[-0.03em] md:text-[40px]">
                 It can&apos;t be talked into things.
               </h2>
-              <p className="mt-5 max-w-[32rem] text-lg leading-relaxed text-muted">
+              <p className="reveal mt-5 max-w-[32rem] text-lg leading-relaxed text-muted">
                 Any message an AI agent reads can try to give it orders. So every action goes through one gate written
                 in code, not in a prompt.
               </p>
-              <ul className="mt-8 flex max-w-[32rem] flex-col gap-4">
+              <ul className="reveal mt-8 flex max-w-[32rem] flex-col gap-4">
                 {rules.map((r) => (
                   <li key={r} className="flex items-start gap-3 text-base leading-relaxed text-ink">
                     <Icon name="checkCircle" className="mt-0.5 size-6 shrink-0 text-mint" />
@@ -251,12 +248,12 @@ export default function Home() {
 
         <section className="border-t border-line">
           <div className="mx-auto w-full max-w-[1152px] px-4 py-24 sm:px-6 md:py-32">
-            <h2 className="max-w-[40rem] text-[32px] leading-tight font-semibold tracking-[-0.03em] md:text-[40px]">
+            <h2 className="reveal max-w-[40rem] text-[32px] leading-tight font-semibold tracking-[-0.03em] md:text-[40px]">
               No new gadget. No new subscription.
             </h2>
             <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
               {gadgets.map((g) => (
-                <div key={g.title} className="border-t border-line pt-6">
+                <div key={g.title} className="reveal border-t border-line pt-6">
                   <Icon name={g.icon} className="size-7 text-mint" />
                   <h3 className="mt-4 text-lg font-semibold">{g.title}</h3>
                   <p className="mt-2 text-base leading-relaxed text-muted">{g.text}</p>
@@ -270,10 +267,10 @@ export default function Home() {
           <div className="mx-auto grid w-full max-w-[1152px] gap-14 px-4 py-24 sm:px-6 md:grid-cols-[1.1fr_0.9fr] md:items-center md:py-32">
             <div>
               <Eyebrow>Buddy Plus</Eyebrow>
-              <h2 className="mt-4 text-[32px] leading-tight font-semibold tracking-[-0.03em] md:text-[40px]">
+              <h2 className="reveal mt-4 text-[32px] leading-tight font-semibold tracking-[-0.03em] md:text-[40px]">
                 Everything Buddy does is free.
               </h2>
-              <p className="mt-5 max-w-[32rem] text-lg leading-relaxed text-muted">
+              <p className="reveal mt-5 max-w-[32rem] text-lg leading-relaxed text-muted">
                 Plus is for people who want to support it: choose your own Buddy (it&apos;s the one on your watch too), get
                 new things first, and a thank-you mark. Privacy and safety are never part of it. Plus runs on RevenueCat.
               </p>
@@ -288,7 +285,7 @@ export default function Home() {
         <section className="border-t border-line">
           <div className="mx-auto flex w-full max-w-[1152px] flex-col items-start gap-6 px-4 py-24 sm:px-6 md:flex-row md:items-end md:justify-between md:py-28">
             <div>
-              <h2 className="text-[32px] leading-tight font-semibold tracking-[-0.03em] md:text-[40px]">Open source.</h2>
+              <h2 className="reveal text-[32px] leading-tight font-semibold tracking-[-0.03em] md:text-[40px]">Open source.</h2>
               <p className="mt-4 max-w-[32rem] text-lg leading-relaxed text-muted">
                 Read how it works, check the safety gate, or build it yourself. Apache-2.0.
               </p>
@@ -304,8 +301,8 @@ export default function Home() {
 
         <section className="border-t border-line">
           <div className="mx-auto grid w-full max-w-[1152px] gap-10 px-4 py-24 sm:px-6 md:grid-cols-[0.8fr_1.2fr] md:py-32">
-            <h2 className="text-[32px] leading-tight font-semibold tracking-[-0.03em] md:text-[40px]">Questions</h2>
-            <div className="divide-y divide-line border-y border-line">
+            <h2 className="reveal text-[32px] leading-tight font-semibold tracking-[-0.03em] md:text-[40px]">Questions</h2>
+            <div className="reveal divide-y divide-line border-y border-line">
               {faq.map((f) => (
                 <details key={f.q} className="group py-5">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-medium [&::-webkit-details-marker]:hidden">
@@ -323,7 +320,7 @@ export default function Home() {
 
         <section className="border-t border-line">
           <div className="mx-auto w-full max-w-[1152px] px-4 py-24 sm:px-6 md:py-32">
-            <h2 className="max-w-[40rem] text-[32px] leading-tight font-semibold tracking-[-0.03em] md:text-[40px]">
+            <h2 className="reveal max-w-[40rem] text-[32px] leading-tight font-semibold tracking-[-0.03em] md:text-[40px]">
               Get Buddy on your wrist first.
             </h2>
             <p className="mt-4 max-w-[32rem] text-lg leading-relaxed text-muted">
