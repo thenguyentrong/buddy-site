@@ -43,7 +43,7 @@ Live at [heybuddy-watch.vercel.app](https://heybuddy-watch.vercel.app).
 ### The page
 
 It tells Buddy's story in the order of the demo video: the hook (*the AI gadget you already own*), the
-problem, a conversation that plays out, what Buddy does on the phone, privacy, the safety rules, what
+video itself, the problem, a conversation that plays out, what Buddy does on the phone, privacy, the safety rules, what
 you need (a watch, earbuds, your ChatGPT plan), Buddy Plus, and the waitlist again at the end.
 
 ### Motion
@@ -77,6 +77,9 @@ A server action ([app/actions.ts](app/actions.ts)) stores the email address, the
 sentence in Neon Postgres in Frankfurt. That's all: no cookies, no analytics. A hidden field catches
 bots. What's stored and why is on the [privacy page](https://heybuddy-watch.vercel.app/privacy).
 
+The demo video ([app/_components/demo-video.tsx](app/_components/demo-video.tsx)) is a picture from this site
+until you press play. Only then does it load from YouTube, in its privacy-enhanced mode.
+
 ---
 
 ## Repository structure
@@ -94,6 +97,7 @@ app/
     watch.tsx            the drawn CSS watch
     buddy-face.tsx       Buddy's face, from the app's frames
     waitlist-form.tsx    the form; Buddy listens while you type
+    demo-video.tsx       the demo video, loaded from YouTube only after you press play
     motion.tsx           Words, Typed and the delays
     sequence.ts          starts each block when it scrolls into view
 public/

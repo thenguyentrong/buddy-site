@@ -49,7 +49,21 @@ export default function Privacy() {
       </section>
       <section>
         <h2>Cookies and tracking</h2>
-        <p>None. No analytics, no ads, no third-party scripts. The font is served from this site.</p>
+        <p>
+          None. No analytics, no ads, no third-party scripts. The font is served from this site. The only thing that
+          can come from elsewhere is the demo video, and only after you press play.
+        </p>
+      </section>
+      <section>
+        <h2>The demo video</h2>
+        <p>
+          Until you press play, the video is just a picture from this site and nothing is loaded from YouTube. When you
+          press play, it plays from YouTube in its privacy-enhanced mode (youtube-nocookie.com), run by Google Ireland
+          Limited. From then on Google receives your IP address and technical data about your device, and may store
+          information on it to play the video. By pressing play you agree to that (Art. 6(1)(a) GDPR, § 25(1) TDDDG).
+          Google may process the data in the US, based on the EU-US Data Privacy Framework. What Google does with it is
+          in its <a href="https://policies.google.com/privacy">privacy policy</a>.
+        </p>
       </section>
       <section>
         <h2>Your rights</h2>

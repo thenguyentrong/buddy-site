@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import frames from "../public/buddy-frames.json";
 import { BuddyFace } from "./_components/buddy-face";
+import { DemoVideo } from "./_components/demo-video";
 import { HeroWatch } from "./_components/hero-watch";
 import { Icon, type IconName } from "./_components/icon";
 import { at, Typed, typing, Words } from "./_components/motion";
@@ -166,6 +167,23 @@ export default function Home() {
             </figure>
           </section>
         </div>
+
+        {/* The demo video, right after the hook. */}
+        <section className="border-t border-line">
+          <div className="mx-auto w-full max-w-[1152px] px-4 py-20 sm:px-6 md:py-28">
+            <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between" data-seq data-gap="0.35">
+              <h2 className={h2}>
+                <Words text="Watch the demo." />
+              </h2>
+              <p className="max-w-[26rem] text-base text-muted" data-a="rise" style={at(0.3)}>
+                A minute and a half: the watch, the phone and what stays private.
+              </p>
+            </div>
+            <div className="mt-10" data-seq data-a="rise" style={at(0.05)}>
+              <DemoVideo />
+            </div>
+          </div>
+        </section>
 
         {/* Problem: the statement and its two sentences; next to it, what a small thing takes on a phone
             today, step by step, and then the same thing with Buddy. */}
