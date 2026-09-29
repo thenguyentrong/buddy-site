@@ -23,6 +23,11 @@ body {
   /* The soft glows may reach past the edges; they must never make the page scroll sideways. */
   overflow-x: clip;
 }
+/* Nor may an entrance that is still waiting (a row starts 20px to the right). Phones pan past body. */
+main > section,
+main > div {
+  overflow-x: clip;
+}
 
 ::selection {
   background: color-mix(in srgb, var(--color-mint) 35%, transparent);

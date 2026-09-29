@@ -62,28 +62,30 @@ export function Watch3D({ onReady, className = "" }: { onReady: () => void; clas
       glow.position.set(0, 0, 1.3);
       scene.add(key, rim, rim2, glow);
 
-      // Buddy on the screen: the app's own frames, drawn into a canvas texture.
+      // Buddy on the screen: the app's own frames, drawn into a canvas texture. 1024 px, so the face stays
+      // sharp on high-density screens.
+      const S = 1024;
       const canvas = document.createElement("canvas");
-      canvas.width = canvas.height = 512;
+      canvas.width = canvas.height = S;
       const ctx = canvas.getContext("2d")!;
       const screenTex = new THREE.CanvasTexture(canvas);
       screenTex.colorSpace = THREE.SRGBColorSpace;
-      screenTex.anisotropy = 4;
+      screenTex.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
       const shapes = new Map<string, Path2D>();
       const drawBuddy = (d: string) => {
-        const bg = ctx.createRadialGradient(256, 215, 0, 256, 256, 330);
+        const bg = ctx.createRadialGradient(S / 2, S * 0.42, 0, S / 2, S / 2, S * 0.645);
         bg.addColorStop(0, "#17171b");
         bg.addColorStop(0.72, "#050506");
         ctx.fillStyle = bg;
-        ctx.fillRect(0, 0, 512, 512);
+        ctx.fillRect(0, 0, S, S);
         let shape = shapes.get(d);
         if (!shape) {
           shape = new Path2D(d);
           shapes.set(d, shape);
         }
-        const size = 512 * 0.6;
+        const size = S * 0.6;
         ctx.save();
-        ctx.translate((512 - size) / 2, (512 - size) / 2);
+        ctx.translate((S - size) / 2, (S - size) / 2);
         ctx.scale(size / 200, size / 200);
         ctx.fillStyle = "#6fe3b4";
         ctx.fill(shape, "evenodd");

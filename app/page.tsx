@@ -12,6 +12,9 @@ const GITHUB = "https://github.com/thenguyentrong/watch-ai";
 
 const ask = "Hey Buddy, text Alex I'm running ten minutes late.";
 
+// The same text without Buddy.
+const phoneSteps = ["Take out your phone", "Unlock it", "Open Messages", "Find Alex", "Type it out", "Send"];
+
 // You say it, then its pop-up drops in, the way it happens on the phone.
 const acts = [
   {
@@ -102,7 +105,7 @@ function Phone({ src, alt, className = "" }: { src: string; alt: string; classNa
       style={at(0.05)}
       className={`mx-auto w-full max-w-[300px] overflow-hidden rounded-[40px] border border-line bg-bg ${className}`}
     >
-      <Image src={src} alt={alt} width={720} height={1561} sizes="300px" className="block h-auto w-full" />
+      <Image src={src} alt={alt} width={1179} height={2556} sizes="300px" quality={90} className="block h-auto w-full" />
     </div>
   );
 }
@@ -112,7 +115,7 @@ export default function Home() {
     <>
       <header className="mx-auto flex w-full max-w-[1152px] items-center justify-between px-4 py-5 sm:px-6">
         <Link href="/" className="flex items-center gap-3">
-          <Image src="/img/buddy-icon.png" alt="" width={32} height={32} preload className="rounded-[9px]" />
+          <Image src="/img/buddy.png" alt="" width={32} height={32} preload className="rounded-[9px]" />
           <span className="text-lg font-semibold tracking-tight">Buddy</span>
         </Link>
         <a href={GITHUB} className="text-sm font-medium text-muted transition-colors hover:text-ink">
@@ -150,9 +153,10 @@ export default function Home() {
                   <Image
                     src="/img/3-text-waits-for-yes.webp"
                     alt="On the phone: a text to Alex waits for Send or Cancel"
-                    width={720}
-                    height={1561}
+                    width={1179}
+                    height={2556}
                     sizes="190px"
+                    quality={90}
                     preload
                     className="block h-auto w-full"
                   />
@@ -163,20 +167,65 @@ export default function Home() {
           </section>
         </div>
 
-        {/* Problem: the statement, then its two sentences, one after the other. */}
+        {/* Problem: the statement and its two sentences; next to it, what a small thing takes on a phone
+            today, step by step, and then the same thing with Buddy. */}
         <section className="border-t border-line">
-          <div className="mx-auto w-full max-w-[1152px] px-4 py-24 sm:px-6 md:py-36" data-seq data-gap="0.5">
-            <h2 className="max-w-[20ch] text-[40px] leading-[1.02] font-semibold tracking-[-0.045em] text-balance md:text-[76px]">
-              <Words text="Small things still need both hands." />
-            </h2>
-            <p className="mt-8 max-w-[38rem] text-xl leading-relaxed text-muted md:text-2xl">
-              <span className="block" data-a="rise" style={at(0.55)}>
-                AI agents can already text, remind and look things up.
-              </span>
-              <span className="block" data-a="rise" style={at(0.95)}>
-                But they live on laptops, and AI gadgets are one more thing to buy and charge.
-              </span>
-            </p>
+          <div className="mx-auto grid w-full max-w-[1152px] gap-14 px-4 py-24 sm:px-6 md:grid-cols-[1.1fr_0.9fr] md:items-center md:py-32">
+            <div data-seq data-gap="0.5">
+              <h2 className="text-[40px] leading-[1.02] font-semibold tracking-[-0.045em] text-balance md:text-[length:clamp(44px,4.6vw,60px)]">
+                <Words text="Small things still need both hands." />
+              </h2>
+              <p className="mt-8 max-w-[34rem] text-xl leading-relaxed text-muted">
+                <span className="block" data-a="rise" style={at(0.55)}>
+                  AI agents can already text, remind and look things up.
+                </span>
+                <span className="block" data-a="rise" style={at(0.95)}>
+                  But they live on laptops, and AI gadgets are one more thing to buy and charge.
+                </span>
+              </p>
+            </div>
+            <figure
+              className="rounded-[32px] border border-line bg-surface p-6 md:p-7"
+              data-seq
+              data-gap="0.3"
+              data-a="rise"
+              style={at(0)}
+            >
+              <figcaption className="text-sm font-semibold text-muted" data-a="rise" style={at(0.1)}>
+                Texting Alex you&apos;re running late
+              </figcaption>
+              <ol className="mt-5 space-y-3">
+                {phoneSteps.map((s, i) => (
+                  <li
+                    key={s}
+                    className="flex items-center gap-3 text-[15px] text-ink"
+                    data-a="row"
+                    style={at(0.25 + i * 0.14)}
+                  >
+                    <span className="flex size-7 shrink-0 items-center justify-center rounded-full border border-line text-xs font-semibold text-dim">
+                      {i + 1}
+                    </span>
+                    {s}
+                  </li>
+                ))}
+              </ol>
+              <p className="mt-4 text-right text-sm text-dim" data-a="rise" style={at(0.3 + phoneSteps.length * 0.14)}>
+                On your phone: {phoneSteps.length} steps, both hands
+              </p>
+              <div className="mt-5 border-t border-line pt-5">
+                <div className="flex items-center gap-3" data-a="grow" style={at(0.55 + phoneSteps.length * 0.14)}>
+                  <Image src="/img/buddy.png" alt="" width={36} height={36} className="size-9 shrink-0 rounded-[10px]" />
+                  <p className="text-[15px] font-medium text-pretty text-ink">“{ask}”</p>
+                </div>
+                <p
+                  className="mt-3 text-right text-sm font-semibold text-mint"
+                  data-a="rise"
+                  style={at(0.85 + phoneSteps.length * 0.14)}
+                >
+                  With Buddy: one sentence, hands-free
+                </p>
+              </div>
+            </figure>
           </div>
         </section>
 
@@ -270,6 +319,7 @@ export default function Home() {
                     width={1016}
                     height={a.height}
                     sizes="(min-width: 768px) 540px, 100vw"
+                    quality={90}
                     className="h-auto w-full"
                     data-a="drop"
                     style={at(0.32 + typing(a.say, 0.022))}
@@ -416,7 +466,7 @@ export default function Home() {
               </span>
               <div className="flex w-[210px] flex-col items-center" data-a="grow" style={at(0.98)}>
                 <Image
-                  src="/img/buddy-icon.png"
+                  src="/img/buddy.png"
                   alt=""
                   width={80}
                   height={80}
