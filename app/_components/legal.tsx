@@ -19,8 +19,3 @@ export function Legal({ title, updated, children }: { title: string; updated?: s
     </>
   );
 }
-
-/** Details only Vinh can fill in; shown plainly so they can't be missed before going live. */
-export function Missing({ children }: { children: React.ReactNode }) {
-  return <span className="rounded bg-raised px-1.5 py-0.5 font-mono text-sm text-mint">[{children}]</span>;
-}

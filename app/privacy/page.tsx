@@ -14,8 +14,8 @@ export default function Privacy() {
       <section>
         <h2>Who is responsible</h2>
         <p>
-          The person in the <Link href="/imprint">imprint</Link>. Write to the email address there for anything about
-          your data.
+          The Vinh Nguyen Trong (address in the <Link href="/imprint">imprint</Link>). For anything about your data,
+          write to <a href="mailto:the.vinh.nguyen.trong@rwth-aachen.de">the.vinh.nguyen.trong@rwth-aachen.de</a>.
         </p>
       </section>
       <section>

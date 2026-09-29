@@ -16,4 +16,4 @@ node --env-file=.env.local scripts/migrate.mjs   # once, creates the table
 npm run dev
 ```
 
-Before going live: fill in the imprint (`app/imprint/page.tsx`).
+Live at https://heybuddy.vercel.app.
