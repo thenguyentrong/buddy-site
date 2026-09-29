@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { SEQUENCE } from "./_components/sequence";
 import "./globals.css";
 
 const inter = Inter({
@@ -22,6 +23,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: SEQUENCE }} />
+      </head>
       <body className="min-h-full font-sans">{children}</body>
     </html>
   );

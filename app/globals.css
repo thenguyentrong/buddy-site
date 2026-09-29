@@ -96,71 +96,187 @@ body {
   mask-image: linear-gradient(to bottom, transparent 0, #000 10%, #000 90%, transparent 100%);
 }
 
-/* Things fly in as you scroll to them (scroll-driven, so nothing runs on scroll events). */
-@keyframes reveal {
+/* Entrances, timed like the demo video: headlines rise word by word, then things pop in, one after
+   another. [data-a] names the move and --d its delay (motion.tsx). A block ([data-seq]) is held until
+   it's on screen (sequence.ts); the hero plays as soon as the page shows. */
+[data-a] {
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+  animation-delay: var(--d, 0s);
+  animation-fill-mode: backwards;
+}
+[data-a="rise"] {
+  animation-name: a-rise;
+}
+[data-a="word"] {
+  display: inline-block;
+  animation-name: a-word;
+  animation-duration: 0.7s;
+}
+[data-a="char"] {
+  animation-name: a-hide;
+  animation-duration: 1ms;
+}
+[data-a="chip"] {
+  animation-name: a-chip;
+  animation-duration: 0.35s;
+  animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+}
+[data-a="row"] {
+  animation-name: a-row;
+  animation-duration: 0.45s;
+  animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+}
+[data-a="nudge"] {
+  animation-name: a-nudge;
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+}
+/* A pop-up drops in from above and settles, like it does on the phone. */
+[data-a="drop"] {
+  transform-origin: top center;
+  animation-name: a-drop;
+  animation-duration: 0.7s;
+  animation-timing-function: cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+[data-a="pop"] {
+  animation-name: a-pop;
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+[data-a="grow"] {
+  animation-name: a-grow;
+  animation-duration: 0.9s;
+  animation-timing-function: cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+[data-a="right"] {
+  animation-name: a-right;
+  animation-duration: 0.8s;
+}
+[data-a="phone"] {
+  animation-name: a-phone;
+  animation-duration: 1s;
+}
+[data-a="glow"] {
+  animation-name: a-fade;
+  animation-duration: 1.2s;
+  animation-timing-function: ease;
+}
+[data-a="blip"] {
+  animation-name: a-blip;
+  animation-duration: 0.75s;
+  animation-timing-function: linear;
+}
+@keyframes a-rise {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(24px);
   }
 }
-@keyframes reveal-3d {
+@keyframes a-word {
+  from {
+    opacity: 0;
+    transform: translateY(0.4em);
+    filter: blur(6px);
+  }
+}
+@keyframes a-hide {
+  from,
+  to {
+    opacity: 0;
+  }
+}
+@keyframes a-chip {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+@keyframes a-row {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+@keyframes a-nudge {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+}
+@keyframes a-drop {
+  from {
+    opacity: 0;
+    transform: perspective(900px) rotateX(-35deg) translateY(-30px) scale(0.94);
+  }
+}
+@keyframes a-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+@keyframes a-grow {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+}
+@keyframes a-right {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+}
+@keyframes a-phone {
   from {
     opacity: 0;
     transform: perspective(1200px) rotateY(-24deg) rotateX(10deg) translateY(60px) scale(0.92);
   }
 }
-@keyframes pop {
+@keyframes a-fade {
   from {
     opacity: 0;
-    transform: perspective(900px) rotateX(-40deg) translateY(-28px) scale(0.94);
   }
 }
-@supports (animation-timeline: view()) {
-  .reveal {
-    animation: reveal ease-out both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 70%;
+@keyframes a-blip {
+  0%,
+  100% {
+    opacity: 0;
   }
-  .reveal-3d {
-    animation: reveal-3d ease-out both;
-    animation-timeline: view();
-    animation-range: entry 0% cover 45%;
-  }
-  .pop {
-    transform-origin: top center;
-    animation: pop ease-out both;
-    animation-timeline: view();
-    animation-range: entry 5% entry 90%;
+  15%,
+  85% {
+    opacity: 1;
   }
 }
 
-/* The demo plays as you scroll through it: each line of the conversation arrives in turn. */
-.demo {
-  view-timeline-name: --demo;
-  view-timeline-axis: block;
+/* Buddy typing, between your message and its answer. Only visible while its blip plays. */
+.typing {
+  opacity: 0;
 }
-@keyframes bubble {
-  from {
-    opacity: 0;
-    transform: translateY(26px) scale(0.96);
-  }
+.typing i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-mint);
+  animation: typing-dot 0.9s ease-in-out infinite;
 }
-@supports (animation-timeline: view()) {
-  .bubble {
-    animation: bubble cubic-bezier(0.16, 1, 0.3, 1) both;
-    animation-timeline: --demo;
+.typing i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.typing i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes typing-dot {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.45;
   }
-  .bubble-1 {
-    animation-range: cover 10% cover 24%;
-  }
-  .bubble-2 {
-    animation-range: cover 20% cover 34%;
-  }
-  .bubble-3 {
-    animation-range: cover 30% cover 42%;
-  }
-  .bubble-4 {
-    animation-range: cover 38% cover 50%;
+  30% {
+    transform: translateY(-5px);
+    opacity: 1;
   }
 }
 
@@ -209,14 +325,18 @@ body {
   .aurora::before,
   .aurora::after,
   .phone-float,
-  .reveal,
-  .reveal-3d,
-  .pop,
-  .bubble {
+  [data-a],
+  .typing i {
     animation: none !important;
   }
   .shine::after {
     display: none;
+  }
+}
+
+@media print {
+  [data-a] {
+    animation: none !important;
   }
 }
 
