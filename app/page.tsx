@@ -3,6 +3,7 @@ import Link from "next/link";
 import frames from "../public/buddy-frames.json";
 import { BuddyFace } from "./_components/buddy-face";
 import { Icon, type IconName } from "./_components/icon";
+import { Watch } from "./_components/watch";
 import { WaitlistForm } from "./_components/waitlist-form";
 
 const GITHUB = "https://github.com/thenguyentrong/watch-ai";
@@ -101,11 +102,11 @@ export default function Home() {
       </header>
 
       <main>
-        <section className="mx-auto grid w-full max-w-[1152px] gap-16 px-4 pt-12 pb-24 sm:px-6 md:grid-cols-[1.15fr_0.85fr] md:items-center md:pt-20 md:pb-32">
+        <section className="mx-auto grid w-full max-w-[1152px] gap-16 px-4 pt-12 pb-24 sm:px-6 md:grid-cols-2 md:items-center md:pt-20 md:pb-32">
           <div>
-            <Eyebrow>For Wear OS watches and Android phones</Eyebrow>
+            <Eyebrow>Smartwatch app · Wear OS + Android</Eyebrow>
             <h1 className="mt-5 text-[40px] leading-[1.05] font-semibold tracking-[-0.035em] text-balance md:text-[56px]">
-              A private, hands-free AI agent on the watch you already wear.
+              A private, hands‑free AI agent on the watch you already wear.
             </h1>
             <p className="mt-6 max-w-[34rem] text-lg leading-relaxed text-muted">
               Say “Hey Buddy” and it texts, calls, reads and answers your messages, sets timers and finds your phone. It
@@ -116,12 +117,23 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative mx-auto aspect-square w-full max-w-[400px]">
-            <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(111,227,180,0.16)_0%,rgba(111,227,180,0.04)_45%,transparent_70%)]" />
-            <div className="absolute inset-[13%] flex items-center justify-center rounded-full bg-[radial-gradient(circle_at_50%_42%,#131316_0%,#050506_72%)] shadow-[0_0_0_12px_#1b1b1f,0_0_0_14px_#2c2c32,0_40px_120px_rgba(0,0,0,0.6)]">
-              <BuddyFace first={frames.rest[0].b} className="w-[64%]" />
+          <figure className="relative flex w-full items-center justify-center gap-6">
+            <div className="absolute top-1/2 left-1/2 aspect-square w-full max-w-[640px] -translate-x-1/2 md:w-[120%] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(111,227,180,0.15)_0%,rgba(111,227,180,0.04)_45%,transparent_70%)]" />
+            <Watch className="relative z-10 shrink-0">
+              <BuddyFace first={frames.rest[0].b} className="w-[62%]" />
+            </Watch>
+            <div className="relative hidden w-[190px] shrink-0 overflow-hidden rounded-[32px] border-[6px] border-[#08080a] shadow-[0_0_0_1.5px_#2c2c32] lg:block">
+              <Image
+                src="/img/3-text-waits-for-yes.webp"
+                alt="On the phone: a text to Alex waits for Send or Cancel"
+                width={720}
+                height={1561}
+                sizes="190px"
+                className="block h-auto w-full"
+              />
             </div>
-          </div>
+            <figcaption className="sr-only">Buddy on the watch, and the text it prepared on the phone</figcaption>
+          </figure>
         </section>
 
         <section className="border-t border-line">

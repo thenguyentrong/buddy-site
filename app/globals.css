@@ -20,6 +20,8 @@ html {
 body {
   background: var(--color-bg);
   color: var(--color-ink);
+  /* The soft glows may reach past the edges; they must never make the page scroll sideways. */
+  overflow-x: clip;
 }
 
 ::selection {
@@ -35,4 +37,74 @@ body {
   html {
     scroll-behavior: auto;
   }
+}
+
+/* The smartwatch around Buddy. --s is the case diameter; everything else follows from it. */
+.watch {
+  --s: 250px;
+  position: relative;
+  width: var(--s);
+  height: calc(var(--s) * 1.9);
+}
+@media (min-width: 768px) {
+  .watch {
+    --s: 280px;
+  }
+}
+.watch-strap {
+  position: absolute;
+  left: 19%;
+  width: 62%;
+  height: calc(var(--s) * 0.62);
+  background: linear-gradient(90deg, #141417 0%, #222226 50%, #141417 100%);
+  box-shadow: inset 0 0 0 1.5px #2b2b30;
+}
+.watch-strap-top {
+  top: 0;
+  border-radius: calc(var(--s) * 0.09) calc(var(--s) * 0.09) 8px 8px;
+}
+.watch-strap-bottom {
+  bottom: 0;
+  border-radius: 8px 8px calc(var(--s) * 0.09) calc(var(--s) * 0.09);
+  /* Three strap holes, so the band reads as a watch strap at a glance. */
+  background:
+    radial-gradient(circle calc(var(--s) * 0.02) at 50% 58%, #09090b 96%, transparent 100%),
+    radial-gradient(circle calc(var(--s) * 0.02) at 50% 71%, #09090b 96%, transparent 100%),
+    radial-gradient(circle calc(var(--s) * 0.02) at 50% 84%, #09090b 96%, transparent 100%),
+    linear-gradient(90deg, #141417 0%, #222226 50%, #141417 100%);
+}
+.watch-button {
+  position: absolute;
+  right: calc(var(--s) * -0.022);
+  width: calc(var(--s) * 0.05);
+  height: calc(var(--s) * 0.13);
+  border-radius: calc(var(--s) * 0.02);
+  background: linear-gradient(90deg, #26262b, #45454c);
+}
+.watch-case {
+  position: absolute;
+  left: 0;
+  top: calc(var(--s) * 0.45);
+  width: var(--s);
+  height: var(--s);
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, #6a6a72 0%, #3a3a40 30%, #1f1f23 68%, #151518 100%);
+  box-shadow: inset 0 0 0 2px #4a4a52, 0 30px 90px rgba(0, 0, 0, 0.65);
+}
+.watch-bezel {
+  position: absolute;
+  inset: 4.5%;
+  border-radius: 50%;
+  background: #08080a;
+  box-shadow: inset 0 0 0 2px #2c2c32;
+}
+.watch-screen {
+  position: absolute;
+  inset: 4%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 42%, #141417 0%, #050506 72%);
 }
