@@ -93,7 +93,7 @@ export default function Home() {
     <>
       <header className="mx-auto flex w-full max-w-[1152px] items-center justify-between px-4 py-6 sm:px-6">
         <Link href="/" className="flex items-center gap-3">
-          <Image src="/img/buddy-icon.png" alt="" width={32} height={32} className="rounded-[9px]" />
+          <Image src="/img/buddy-icon.png" alt="" width={32} height={32} preload className="rounded-[9px]" />
           <span className="text-lg font-semibold tracking-tight">Buddy</span>
         </Link>
         <a href={GITHUB} className="text-sm font-medium text-muted transition-colors hover:text-ink">
@@ -129,6 +129,7 @@ export default function Home() {
                 width={720}
                 height={1561}
                 sizes="190px"
+                preload
                 className="block h-auto w-full"
               />
             </div>
