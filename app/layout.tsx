@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://heybuddy.vercel.app"),
+  metadataBase: new URL("https://heybuddy-watch.vercel.app"),
   title: "Buddy: a private AI agent on the watch you already wear",
   description:
     "Say “Hey Buddy” and it texts, calls and handles your messages on your phone. Runs on your own ChatGPT plan; what's private is read on your phone with on-device AI.",

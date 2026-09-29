@@ -16,4 +16,4 @@ node --env-file=.env.local scripts/migrate.mjs   # once, creates the table
 npm run dev
 ```
 
-Live at https://heybuddy.vercel.app.
+Live at https://heybuddy-watch.vercel.app.
