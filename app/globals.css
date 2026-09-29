@@ -134,6 +134,51 @@ body {
   }
 }
 
+/* The demo plays as you scroll through it: each line of the conversation arrives in turn. */
+.demo {
+  view-timeline-name: --demo;
+  view-timeline-axis: block;
+}
+@keyframes bubble {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.96);
+  }
+}
+@supports (animation-timeline: view()) {
+  .bubble {
+    animation: bubble cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-timeline: --demo;
+  }
+  .bubble-1 {
+    animation-range: cover 10% cover 24%;
+  }
+  .bubble-2 {
+    animation-range: cover 20% cover 34%;
+  }
+  .bubble-3 {
+    animation-range: cover 30% cover 42%;
+  }
+  .bubble-4 {
+    animation-range: cover 38% cover 50%;
+  }
+}
+
+/* Bento cells: one lit from above, all with a mint edge on hover. */
+.cell {
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.cell:hover {
+  border-color: color-mix(in srgb, var(--color-mint) 40%, var(--color-line));
+  box-shadow: 0 24px 60px -30px rgba(111, 227, 180, 0.35);
+}
+.cell-glow {
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(111, 227, 180, 0.13), rgba(111, 227, 180, 0) 60%), var(--color-surface);
+}
+
 /* A light sweep over the button, and chips that lift. */
 .shine {
   position: relative;
@@ -166,7 +211,8 @@ body {
   .phone-float,
   .reveal,
   .reveal-3d,
-  .pop {
+  .pop,
+  .bubble {
     animation: none !important;
   }
   .shine::after {
@@ -185,6 +231,9 @@ body {
   .watch {
     --s: 280px;
   }
+}
+.watch.watch-sm {
+  --s: 112px;
 }
 .watch-strap {
   position: absolute;

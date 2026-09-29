@@ -9,9 +9,9 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://heybuddy-watch.vercel.app"),
-  title: "Buddy: a private AI agent on the watch you already wear",
+  title: "Buddy: the AI gadget you already own",
   description:
-    "Say “Hey Buddy” and it texts, calls and handles your messages on your phone. Runs on your own ChatGPT plan; what's private is read on your phone with on-device AI.",
+    "Buddy turns your smartwatch into a private AI agent. Say what you need, and your phone does it, on your own ChatGPT plan.",
   openGraph: {
     title: "Buddy",
     description: "A private, hands-free AI agent on the watch you already wear.",
